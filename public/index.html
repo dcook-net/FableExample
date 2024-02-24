@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fable</title>
+  </head>
+<body>
+    <script src="bundle.js"></script>
+    <script>
+
+        function validateForm(){
+
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
+            const title = document.getElementById("title").value;
+
+            const person = {
+                firstName: firstName,
+                lastName: lastName,
+                title: title
+            }
+
+            // Can't seem to access the validate function from bundle.js ?
+            // ¯\_(ツ)_/¯
+            const errors = validate(person);
+
+            if (errors.lenght > 0)
+            {
+                document.getElementById("firstName").value = errors;
+            }
+        }
+    </script>
+    <div id="root"></div>
+    <form>
+
+        <div id="errors"></div>
+
+        <div>
+            <label for="title">Title:</label>
+
+            <select name="title" id="title">
+                <option value="Mrs">Mrs</option>
+                <option value="Ms">Ms</option>
+                <option value="Miss">Miss</option>
+                <option value="Mr" selected="selected">Mr</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="fistName">First name:</label>
+            <input type="text" id="firstName" name="firstName" value="Steve" />
+        </div>
+
+        <div>
+            <label for="lastName">last name:</label>
+            <input type="text" id="lastName" name="lastName" value="Smith"/>
+        </div>
+
+        <input type="button" id="save" name="save" onclick="validateForm();" value="Save" />
+
+    </form>
+
+</body>
+</html>
